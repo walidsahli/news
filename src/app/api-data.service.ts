@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class ApiDataService {
   public DeletButton = new Subject
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router : Router) {
   }
 
   GetTH(x: string, y: number) {

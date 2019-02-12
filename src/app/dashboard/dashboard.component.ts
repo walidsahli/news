@@ -36,16 +36,13 @@ export class DashboardComponent implements OnInit {
     if(this.lang) {readyData=readyData+"&language="+this.lang}
     if(this.sortby) {readyData=readyData+"&sortBy="+this.sortby}
     this.data.getData(readyData,1).subscribe(x=>this.data.shareddata.next(x))
-    this.router.navigateByUrl('dashboard/article')
   }
 
   THL(x: string, y: number) {
     this.data.GetTH(x, y).subscribe(x => this.data.shareddata.next(x))
-    this.router.navigateByUrl('dashboard/article')
   }
   LocalNews() {
     this.data.GetLocalNews()
-    this.router.navigateByUrl('dashboard/article')
   }
   MyNews() {
     this.db.GetMyNews()

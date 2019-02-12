@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { Router } from '@angular/router';
@@ -9,22 +9,22 @@ import { DBinterService } from './dbinter.service';
 })
 export class AuthService {
 
-  constructor(public afauth: AngularFireAuth ,private router : Router ,private db : DBinterService) { }
+  constructor(public afauth: AngularFireAuth ,private router : Router ,private db : DBinterService, private zone : NgZone) { }
 
   loginG() {
     this.afauth.auth.signInWithPopup(new auth.GoogleAuthProvider())
     .then(x =>localStorage.setItem('currentuser', JSON.stringify(x.user)))
-    .then(()=>this.router.navigateByUrl('dashboard/article'))
+    .then(()=>this.zone.run(() => this.router.navigateByUrl('dashboard')))
     
   }
   SignInMP( mail : string , pass : string){
     this.afauth.auth.signInWithEmailAndPassword(mail,pass)
     .then(x =>localStorage.setItem('currentuser', JSON.stringify(x.user)))
-    .then(()=>this.router.navigateByUrl('dashboard/article'))
+    .then(()=>this.zone.run(() => this.router.navigateByUrl('dashboard')))
   }
   SignUpMP( mail : string , pass : string){
     this.afauth.auth.createUserWithEmailAndPassword(mail,pass)
-    .then(()=>this.router.navigateByUrl('auth/login'))
+    .then(()=>this.zone.run(() => this.router.navigateByUrl('dashboard')))
   }
   logout() {
     this.afauth.auth.signOut().then(()=>
@@ -34,6 +34,6 @@ export class AuthService {
   loginFB() {
     this.afauth.auth.signInWithPopup(new auth.FacebookAuthProvider())
     .then(x =>localStorage.setItem('currentuser', JSON.stringify(x.user)))
-    .then(()=>this.router.navigateByUrl('dashboard/article'))
+    .then(()=>this.zone.run(() => this.router.navigateByUrl('dashboard')))
   }
 }

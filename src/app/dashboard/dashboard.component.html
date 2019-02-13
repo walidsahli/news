@@ -1,144 +1,111 @@
-<div class="container" >
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" >
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+
+
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="example-toolbar">
+      <div class="class1">
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
     </button>
-    <div class="collapse navbar-collapse"  id="navbarTogglerDemo01" >
-      <a class="navbar-brand" style="font-family: fantasy;">Latest News</a>
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item ">
-          <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Library</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact us</a>
-        </li>
+    <h1 class="example-app-name">Dashboard</h1>
+      <div>
         
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" aria-label="Search"[(ngModel)]=query>
-        <div class="btn-group">
-          <button type="button" class="btn btn-success"(click)=Search()>Search</button>
-          <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-          </button>
-          <div class="dropdown-menu">
-            <div class="dropdown-item">
-            from:<input type="date" [(ngModel)]=fromDate name="datefrom"> 
-            </div>
-            <div class="dropdown-item">
-              To:<input type="date" [(ngModel)]=toDate name="datetoo"> 
-              </div>
-              <div class="dropdown-item">
-              <select [(ngModel)]="sortby" name="sort">
-                <option value="publishedAt">Published At</option>
-                <option value="relevancy">Relevancy</option>
-                <option value="popularity">Popularity</option>
-              </select>
-              </div>
-              <div class="dropdown-item">
-              <select [(ngModel)]="lang" name="langu">
-                <option *ngFor="let i of EverLanguages" value="{{i.i}}" [selected]='i.i=="en"'>{{i.c}}</option>
-              </select>
-              </div>
-          </div>
-        </div>
-      </form>
-  
-      <ul class="navbar-nav ml-auto ml-md-0" >
-        <li class="nav-item dropdown no-arrow mx-1">
-          <a  class="nav-link" ><img [src]=UserData.photoURL alt="" style="width:23px;height:23px">
-          </a>
-          <div class="dropdown">
-              <div class="dropdown-content">
-                <a (click)=logOut()>Logout</a>
-                <a href="#">My Space</a>
-              </div>
-            </div>
-        </li>        
-      </ul>
+      </div>
+    <div class="class2">
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="icon right">
+      <img [src]=UserData.photoURL class="icon right">
+    </button>
+    <mat-menu #menu="matMenu" class="right" >
+      <button mat-menu-item (click)=logOut()>
+        <span><mat-icon>logout</mat-icon>  Logout</span>
+      </button>
+    </mat-menu>
     </div>
+    </div>
+  </mat-toolbar>
+
+
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56">
+      <mat-nav-list (click)=MyNews()>
+        <button mat-button>
+          <mat-icon>assignment</mat-icon> My News
+        </button>
+      </mat-nav-list>
+      <mat-nav-list (click)='LocalNews()'>
+        <button mat-button>
+          <mat-icon>home</mat-icon> Home
+        </button>
+      </mat-nav-list>
+      <mat-divider></mat-divider>
+      <mat-nav-list (click)='THL("business",1)'>
+        <button mat-button>
+          <mat-icon>monetization_on</mat-icon> Business
+        </button>
+      </mat-nav-list>
+      <mat-nav-list (click)='THL("health",1)'>
+        <button mat-button>
+          <mat-icon>favorite</mat-icon> Health
+        </button>
+      </mat-nav-list>
+      <mat-nav-list (click)='THL("sports",1)'>
+        <button mat-button>
+          <mat-icon>directions_bike</mat-icon> Sports
+        </button>
+      </mat-nav-list>
+      <mat-nav-list (click)='THL("science",1)'>
+        <button mat-button>
+            <mat-icon>timeline</mat-icon>  Science
+        </button>
+      </mat-nav-list>
+      <mat-nav-list (click)='THL("technology",1)'>
+        <button mat-button>
+          <mat-icon>tap_and_play</mat-icon> Technology
+        </button>
+      </mat-nav-list>
+      <mat-divider></mat-divider>
+      <mat-nav-list>
+          <form class="form-inline w-80">
+              <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" aria-label="Search"[(ngModel)]=query>
+              <div class="btn-group">
+                <button type="button" class="btn btn-success"(click)=Search()>Search</button>
+                <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+                </button>
+                <div class="dropdown-menu">
+                  <div class="dropdown-item">
+                  from:<input type="date" [(ngModel)]=fromDate name="datefrom"> 
+                  </div>
+                  <div class="dropdown-item">
+                    To:<input type="date" [(ngModel)]=toDate name="datetoo"> 
+                    </div>
+                    <div class="dropdown-item">
+                    <select [(ngModel)]="sortby" name="sort">
+                      <option value="publishedAt">Published At</option>
+                      <option value="relevancy">Relevancy</option>
+                      <option value="popularity">Popularity</option>
+                    </select>
+                    </div>
+                    <div class="dropdown-item">
+                    <select [(ngModel)]="lang" name="langu">
+                      <option *ngFor="let i of EverLanguages" value="{{i.i}}" [selected]='i.i=="en"'>{{i.c}}</option>
+                    </select>
+                    </div>
+                </div>
+              </div>
+            </form>
+        
+        </mat-nav-list>
+
+    </mat-sidenav>
+
+    <app-article></app-article>
+
    
-   
-   </nav>
-  </div>
-   
-   <!-- Sidebar -->
-   <div>
-  <ul class=" sidebar navbar-nav" style="position:fixed">
-    <li class="nav-item ">
-      <a class="nav-link">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Dashboard</span>
-      </a>
-    </li>
+  </mat-sidenav-container>
+  <mat-toolbar color="primary">
+      <mat-toolbar-row class="footer">
+        <span>Custom Toolbar</span>
+      </mat-toolbar-row>
+      </mat-toolbar>
   
-    <li class="nav-item" (click)='LocalNews()'>
-        <a class="nav-link">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Home</span></a>
-    
-    </li>
-  
-    <li class="nav-item">
-        <a class="nav-link">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Streaming</span></a>
-    
-    </li>
-    <li class="nav-item" (click)=MyNews()>
-      <a class="nav-link">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>My news</span></a>
-        <hr class="hr-success" style="background-color: black">
-  
-    </li>
-  
-  
-    <li class="nav-item" (click)='THL("business",1)'>
-      <a class="nav-link">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>business</span></a>
-    </li>
-    <li class="nav-item" (click)='THL("entertainment",1)'>
-      <a class="nav-link">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>entertainment</span></a>
-    </li>
-    <li class="nav-item" (click)='THL("health",1)'>
-      <a class="nav-link">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>health</span></a>
-    </li>
-    <li class="nav-item" (click)='THL("science",1)'>
-      <a class="nav-link">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>science</span></a>
-    </li>
-    <li class="nav-item"(click)='THL("sports",1)'>
-      <a class="nav-link">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>sports</span></a>
-    </li>
-    <li class="nav-item" (click)='THL("technology",1)'>
-      <a class="nav-link">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>technology</span></a>
-    </li>
-  
-   
-  </ul>
-  
-  </div>
-   
- <router-outlet></router-outlet>
-  
-  
-  
-  
-  
-  
-  
-  
-  
+</div>

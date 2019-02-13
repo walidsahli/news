@@ -14,10 +14,7 @@ const routes: Routes = [
     {path : "login" , component : LoginComponent},
     {path : "register" , component : RegisterComponent}
   ]},
-  { path : "dashboard" , component : DashboardComponent, canActivate:[AuthGuard] ,children:[ 
-    { path : "", component : ArticleComponent, pathMatch: 'full'},
-    { path : "article" , component : ArticleComponent}
-  ]}
+  { path : "dashboard" , component : DashboardComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({

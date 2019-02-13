@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { ApiDataService } from './api-data.service';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -21,7 +22,8 @@ export class DBinterService {
 
 
   constructor(private db: AngularFireDatabase,
-    private apiData: ApiDataService) {
+    private apiData: ApiDataService,
+    private router : Router) {
     this.itemsRef = this.db.list('Users');
     // Use snapshotChanges().map() to store the key
     this.items = this.itemsRef.snapshotChanges().pipe(
@@ -105,12 +107,12 @@ export class DBinterService {
         this.itemsRef.set(x[0].key, Td)
       })
     })
-  }
+     
+     }
 
 
   GetMyNews() {
     this.apiData.DeletButton.next(true)
-    this.db.list('Users', ref => ref.orderByChild('name').equalTo(this.CurrentUserId.email))
-      .valueChanges().subscribe(x => this.apiData.shareddata.next(x[0]))
+    this.db.list('Users', ref => ref.orderByChild('name').equalTo(this.CurrentUserId.email)).valueChanges().pipe(take(1)).subscribe(x => this.apiData.shareddata.next(x[0]))
   }
 }

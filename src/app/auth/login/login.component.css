@@ -110,3 +110,16 @@
 button {
   -webkit-appearance: button;
 }
+#gplus:hover{
+  color: #d12731 ;
+  border: 1px solid #d12731 ;
+  transition: .5s ;
+  cursor: pointer;
+}
+
+#fb:hover{
+  color: #4267B2 ;
+  border: 1px solid #4267B2 ;
+  transition: .5s ;
+  cursor: pointer;
+}

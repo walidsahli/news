@@ -1,25 +1,25 @@
-
-
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
   <mat-toolbar color="primary" class="example-toolbar">
-      <div class="class1">
-    <button mat-icon-button (click)="snav.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <h1 class="example-app-name">Dashboard</h1>
-      <div>
-        
-      </div>
-    <div class="class2">
-    <button mat-icon-button [matMenuTriggerFor]="menu" class="icon right">
-      <img [src]=UserData.photoURL class="icon right">
-    </button>
-    <mat-menu #menu="matMenu" class="right" >
-      <button mat-menu-item (click)=logOut()>
-        <span><mat-icon>logout</mat-icon>  Logout</span>
+    <div class="class1">
+      <button mat-icon-button (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
       </button>
-    </mat-menu>
-    </div>
+      <h1 class="example-app-name">Dashboard</h1>
+      <div>
+
+      </div>
+      <div class="class2">
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="icon right">
+          <img [src]=UserData.photoURL class="icon right">
+        </button>
+        <mat-menu #menu="matMenu" class="right">
+          <button mat-menu-item (click)=logOut()>
+            <span>
+              <mat-icon>logout</mat-icon> Logout
+            </span>
+          </button>
+        </mat-menu>
+      </div>
     </div>
   </mat-toolbar>
 
@@ -27,85 +27,82 @@
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56">
-      <mat-nav-list (click)=MyNews()>
+      <mat-nav-list [routerLink]="[ '/dashboard/mynews']">
         <button mat-button>
-          <mat-icon>assignment</mat-icon> My News
+          <mat-icon>assignment</mat-icon> Saved News
         </button>
       </mat-nav-list>
-      <mat-nav-list (click)='LocalNews()'>
+      <mat-nav-list  [routerLink]="[ '/dashboard/home']">
         <button mat-button>
           <mat-icon>home</mat-icon> Home
         </button>
       </mat-nav-list>
       <mat-divider></mat-divider>
-      <mat-nav-list (click)='THL("business",1)'>
+      <mat-nav-list [routerLink]="[ '/dashboard/buss']">
         <button mat-button>
           <mat-icon>monetization_on</mat-icon> Business
         </button>
       </mat-nav-list>
-      <mat-nav-list (click)='THL("health",1)'>
+      <mat-nav-list [routerLink]="[ '/dashboard/health']">
         <button mat-button>
           <mat-icon>favorite</mat-icon> Health
         </button>
       </mat-nav-list>
-      <mat-nav-list (click)='THL("sports",1)'>
-        <button mat-button>
+      <mat-nav-list >
+        <button mat-button [routerLink]="[ '/dashboard/sport']">
           <mat-icon>directions_bike</mat-icon> Sports
         </button>
       </mat-nav-list>
-      <mat-nav-list (click)='THL("science",1)'>
+      <mat-nav-list [routerLink]="[ '/dashboard/science']">
         <button mat-button>
-            <mat-icon>timeline</mat-icon>  Science
+          <mat-icon>timeline</mat-icon> Science
         </button>
       </mat-nav-list>
-      <mat-nav-list (click)='THL("technology",1)'>
+      <mat-nav-list [routerLink]="[ '/dashboard/tech']">
         <button mat-button>
           <mat-icon>tap_and_play</mat-icon> Technology
         </button>
       </mat-nav-list>
       <mat-divider></mat-divider>
       <mat-nav-list>
-          <form class="form-inline w-80">
-              <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" aria-label="Search"[(ngModel)]=query>
-              <div class="btn-group">
-                <button type="button" class="btn btn-primary"(click)=Search()>Search</button>
-                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-                </button>
-                <div class="dropdown-menu">
-                  <div class="dropdown-item">
-                  from:<input type="date" [(ngModel)]=fromDate name="datefrom"> 
-                  </div>
-                  <div class="dropdown-item">
-                    To:<input type="date" [(ngModel)]=toDate name="datetoo"> 
-                    </div>
-                    <div class="dropdown-item">
-                    <select [(ngModel)]="sortby" name="sort">
-                      <option value="publishedAt">Published At</option>
-                      <option value="relevancy">Relevancy</option>
-                      <option value="popularity">Popularity</option>
-                    </select>
-                    </div>
-                    <div class="dropdown-item">
-                    <select [(ngModel)]="lang" name="langu">
-                      <option *ngFor="let i of EverLanguages" value="{{i.i}}" [selected]='i.i=="en"'>{{i.c}}</option>
-                    </select>
-                    </div>
-                </div>
+        <form class="form-inline w-80">
+          <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" aria-label="Search"
+            [(ngModel)]=query>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" (click)=Search()>Search</button>
+            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+            </button>
+            <div class="dropdown-menu">
+              <div class="dropdown-item">
+                from:<input type="date" [(ngModel)]=fromDate name="datefrom">
               </div>
-            </form>
-        
-        </mat-nav-list>
+              <div class="dropdown-item">
+                To:<input type="date" [(ngModel)]=toDate name="datetoo">
+              </div>
+              <div class="dropdown-item">
+                <select [(ngModel)]="sortby" name="sort">
+                  <option value="publishedAt">Published At</option>
+                  <option value="relevancy">Relevancy</option>
+                  <option value="popularity">Popularity</option>
+                </select>
+              </div>
+              <div class="dropdown-item">
+                <select [(ngModel)]="lang" name="langu">
+                  <option *ngFor="let i of EverLanguages" value="{{i.i}}" [selected]='i.i=="en"'>{{i.c}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </mat-nav-list>
 
     </mat-sidenav>
 
-    <app-article></app-article>
-
+    <router-outlet></router-outlet>
    
+
+
   </mat-sidenav-container>
-  <mat-toolbar color="primary">
-      <mat-toolbar-row class="footer">
-        <span>Custom Toolbar</span>
-      </mat-toolbar-row>
-      </mat-toolbar>
-  
+ 
 </div>

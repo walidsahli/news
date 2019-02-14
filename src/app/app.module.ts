@@ -54,6 +54,13 @@ import { DBinterService } from './dbinter.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { C404Component } from './c404/c404.component';
+import { SportComponent } from './dashboard/sport/sport.component';
+import { HealthComponent } from './dashboard/health/health.component';
+import { BusinessComponent } from './dashboard/business/business.component';
+import { TechnologyComponent } from './dashboard/technology/technology.component';
+import { ScienceComponent } from './dashboard/science/science.component';
+import { SearchComponent } from './dashboard/search/search.component';
+import { MynewsComponent } from './dashboard/mynews/mynews.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +71,14 @@ import { C404Component } from './c404/c404.component';
     DashboardComponent,
     ArticleComponent,
     HomeComponent,
-    C404Component
+    C404Component,
+    SportComponent,
+    HealthComponent,
+    BusinessComponent,
+    TechnologyComponent,
+    ScienceComponent,
+    SearchComponent,
+    MynewsComponent
   ],
   imports: [
     BrowserModule,

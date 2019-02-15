@@ -66,11 +66,10 @@
       <mat-divider></mat-divider>
       <mat-nav-list>
         <form class="form-inline w-80">
-          <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" aria-label="Search"
+          <input class="form-control mr-sm-2" (keyup)=Search() name="query" type="search" placeholder="Search" aria-label="Search"
             [(ngModel)]=query>
           <div class="btn-group">
-            <button type="button" class="btn btn-primary" (click)=Search()>Search</button>
-            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+            <button type="button" class="btn btn-basic dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
             </button>
             <div class="dropdown-menu">
               <div class="dropdown-item">

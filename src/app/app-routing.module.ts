@@ -15,10 +15,11 @@ import { HealthComponent } from './dashboard/health/health.component';
 import { ScienceComponent } from './dashboard/science/science.component';
 import { ArticleComponent } from './dashboard/article/article.component';
 import { MynewsComponent } from './dashboard/mynews/mynews.component';
+import { Auth2Guard } from './auth/auth2.guard';
 
 const routes: Routes = [
-  {path : '' , component : HomeComponent, pathMatch : 'full'},
-  {path : 'auth' , component : AuthComponent, children : [
+  {path : '' , component : HomeComponent,canActivate: [Auth2Guard], pathMatch : 'full'},
+  {path : 'auth' , component : AuthComponent,canActivate: [Auth2Guard], children : [
     {path : '' , component : LoginComponent, pathMatch: 'full'},
     {path : 'login' , component : LoginComponent},
     {path : 'register' , component : RegisterComponent}

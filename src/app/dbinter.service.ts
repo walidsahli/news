@@ -31,12 +31,12 @@ export class DBinterService {
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       )
     );
-    this.CurrentUserId = JSON.parse(localStorage.getItem('currentuser'))
   }
 
 
 
   addArticle(arti: any) {
+    this.CurrentUserId = JSON.parse(localStorage.getItem('currentuser'))
     const q1 = () => {
       return new Promise((resolve) => this.db.list('Users', ref => ref.orderByChild('name').equalTo(this.CurrentUserId.email))
         .snapshotChanges().subscribe(x => {resolve(x)}))
@@ -77,6 +77,7 @@ export class DBinterService {
 
 
   DeleteArticle(y: any) {
+    this.CurrentUserId = JSON.parse(localStorage.getItem('currentuser'))
     let array: any = []
     const q1 = () => {
       return new Promise((resolve) =>
@@ -93,6 +94,7 @@ export class DBinterService {
     q().then(x => {
       array = x
       let indexT: number
+      console.log(array.articles.length)
 
       for (var i = 0; i < array.articles.length; i++) {
         if (y.content == array.articles[i].content) indexT = i

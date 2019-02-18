@@ -28,8 +28,8 @@ export class AuthService {
   }
   logout() {
     this.afauth.auth.signOut().then(()=>
-    localStorage.removeItem('currentuser'))
-    this.router.navigateByUrl('auth')
+    localStorage.removeItem('currentuser')).then(()=>
+    this.zone.run(() => this.router.navigateByUrl('auth')))
   }
   loginFB() {
     this.afauth.auth.signInWithPopup(new auth.FacebookAuthProvider())

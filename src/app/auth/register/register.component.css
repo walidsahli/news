@@ -5,6 +5,7 @@
 }
 
 .wrapper {
+  overflow-y: hidden;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem;
@@ -14,17 +15,15 @@
   text-align: left;
   background-color: #fff;
   height: 100%;
+  color: #fff !important;
   display: -ms-flexbox;
   display: flex;
-  flex-direction: column ;
   -ms-flex-align: center;
   align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding: 40px 0px ;
   background: linear-gradient(132deg, #7D59AA, #EA3878, rgb(0, 17, 248));
   background-size: 400%;
   animation: BackgroundGradiant 10s ease infinite;
-  height: 48.8vw;
 }
 
 @keyframes BackgroundGradiant {

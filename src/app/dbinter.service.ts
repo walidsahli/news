@@ -39,7 +39,7 @@ export class DBinterService {
   addArticle(arti: any) {
     const q1 = () => {
       return new Promise((resolve) => this.db.list('Users', ref => ref.orderByChild('name').equalTo(this.CurrentUserId.email))
-        .snapshotChanges().subscribe(x => resolve(x)))
+        .snapshotChanges().subscribe(x => {resolve(x)}))
     }
     const q2 = () => {
       return new Promise((resolve) => this.db.list('Users', ref => ref.orderByChild('name').equalTo(this.CurrentUserId.email))

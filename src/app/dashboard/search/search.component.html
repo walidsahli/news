@@ -1,4 +1,4 @@
-<div *ngIf="article">
+<!--<div *ngIf="article">
   <div *ngFor="let i of article.articles;" id="card">
     <mat-card class="example-card">
       <mat-card-header>
@@ -13,10 +13,30 @@
         <button mat-button (click)="addArticle(i)">
           <mat-icon>save</mat-icon> Save it
         </button>
+        <button mat-raised-button (click)="openDialog(i)">See it</button>
+
       </mat-card-actions>
     </mat-card>
   </div>
 </div>
 <div *ngIf="!article" id="wait">
     <mat-spinner></mat-spinner>
-</div>
+</div>-->
+
+<div *ngIf="article">
+    <div *ngFor="let i of article.articles;" id="card">
+      <mat-card class="example-card">
+    
+        <mat-card-content>
+          <h4 (click)="openDialog(i)">{{i.title}}</h4>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button (click)="openDialog(i)">Read This</button>
+        </mat-card-actions>
+        
+      </mat-card>
+    </div>
+  </div>
+  <div *ngIf="!article" id="wait">
+      <mat-spinner></mat-spinner>
+  </div>

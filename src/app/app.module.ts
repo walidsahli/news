@@ -59,7 +59,7 @@ import { HealthComponent } from './dashboard/health/health.component';
 import { BusinessComponent } from './dashboard/business/business.component';
 import { TechnologyComponent } from './dashboard/technology/technology.component';
 import { ScienceComponent } from './dashboard/science/science.component';
-import { SearchComponent } from './dashboard/search/search.component';
+import { SearchComponent, DialogOverviewExampleDialog } from './dashboard/search/search.component';
 import { MynewsComponent } from './dashboard/mynews/mynews.component';
 
 @NgModule({
@@ -78,7 +78,8 @@ import { MynewsComponent } from './dashboard/mynews/mynews.component';
     TechnologyComponent,
     ScienceComponent,
     SearchComponent,
-    MynewsComponent
+    MynewsComponent,
+    DialogOverviewExampleDialog
   ],
   imports: [
     BrowserModule,
@@ -128,6 +129,8 @@ import { MynewsComponent } from './dashboard/mynews/mynews.component';
     AuthGuard,
     DBinterService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[DialogOverviewExampleDialog]
+
 })
 export class AppModule { }

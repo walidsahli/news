@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
     this.UserData = JSON.parse(localStorage.getItem('currentuser'));
   }
   Search() {
-    let readyData = 'a';
+    let readyData = '';
     if (this.query) { readyData = this.query; }
     if (this.toDate) { readyData = readyData + '&to=' + this.toDate; }
     if (this.fromDate) { readyData = readyData + '&from=' + this.fromDate; }

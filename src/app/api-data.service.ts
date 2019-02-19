@@ -12,17 +12,18 @@ export class ApiDataService {
   constructor(private http: HttpClient, private router: Router) {
   }
 
-  GetTH(x: string, y: number) {
+  GetTH(x: string, y: number,z:number) {
     const a = 'category=' + x;
-    const b = '&page=' + y + '&';
+    const b = '&page=' + y ;
+    const c =  '&pageSize=' + z 
     return this.http.get('https://newsapi.org/v2/top-headlines?'
-    + a + b + 'pageSize=20&apiKey=b9d34afdf37948cda401c3dc0afe1189');
+    + a + b + c +'&apiKey=b9d34afdf37948cda401c3dc0afe1189');
   }
 
-  getData(input: any, x: number) {
+  getData(input: any, x: number,z:number) {
 
     return this.http.get<any>('https://newsapi.org/v2/everything?q='
-    + input + '&page=' + x + '&pageSize=20&apiKey=b9d34afdf37948cda401c3dc0afe1189');
+    + input + '&page=' + x + '&pageSize='+z+'&apiKey=b9d34afdf37948cda401c3dc0afe1189');
   }
 
   GetLocalNews() {

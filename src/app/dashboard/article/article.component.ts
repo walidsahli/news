@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DBinterService } from 'src/app/dbinter.service';
+import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-article',
@@ -8,11 +9,16 @@ import { DBinterService } from 'src/app/dbinter.service';
   styleUrls: ['./article.component.css']
 })
 export class ArticleComponent implements OnInit {
-  public article: any 
-  constructor(private http : HttpClient, private dbinter : DBinterService) {
+  public article: any
+  public length: number
+  pageSize = 20;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  pageindex: number = 1
+  pageEvent: PageEvent;
+  constructor(private http: HttpClient, private dbinter: DBinterService) {
 
   }
-  GetLocalNews(p:number) {
+  GetLocalNews(p: number,m:number) {
 
     const q1 = () => {
       return new Promise((resolve) =>
@@ -35,23 +41,33 @@ export class ArticleComponent implements OnInit {
         };
         q3().then(l => {
           this.http.get<any>('https://newsapi.org/v2/everything?q='
-            + l[0].nativeName + '&page='+p+'&sortBy=publishedAt&apiKey=b9d34afdf37948cda401c3dc0afe1189')
+            + l[0].nativeName + '&page=' + p + '&pageSize='+ m + '&sortBy=publishedAt&apiKey=b9d34afdf37948cda401c3dc0afe1189')
             .subscribe(x => {
-              this.article=x
+              this.article = x;
+              if( x.totalResults%this.pageSize != 0 ){
+                this.length = Math.ceil(x.totalResults)
+               }
+              else {
+                this.length = x.totalResults/this.pageSize
+              }
+
             });
         });
       });
     });
   }
 
-  addArticle(a: any){
+  addArticle(a: any) {
     this.dbinter.addArticle(a);
   }
-
+  changepage(x: PageEvent) {
+    this.pageindex = x.pageIndex + 1
+    this.pageSize=x.pageSize
+    this.GetLocalNews(this.pageindex,this.pageSize)
+  }
 
   ngOnInit() {
-    this.GetLocalNews(1)
-  
+    this.GetLocalNews(this.pageindex,this.pageSize)
   }
 
 }

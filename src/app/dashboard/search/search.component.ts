@@ -11,11 +11,11 @@ import { DBinterService } from 'src/app/dbinter.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  public article : any
+  public article: any;
 
-  constructor(private data : ApiDataService,public dialog: MatDialog, private db : DBinterService) { }
-  addArticle(x){
-    this.db.addArticle(x)
+  constructor(private data: ApiDataService, public dialog: MatDialog, private db: DBinterService) { }
+  addArticle(x) {
+    this.db.addArticle(x);
   }
   openDialog(i): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
@@ -26,7 +26,7 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.data.shareddata.subscribe(x=>this.article=x)  
+    this.data.shareddata.subscribe(x => this.article = x);  
   }
 }
 
@@ -38,10 +38,10 @@ export class DialogOverviewExampleDialog {
 
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any , private db : DBinterService) {}
+    @Inject(MAT_DIALOG_DATA) public data: any , private db: DBinterService) {}
 
-   add(i){
-   this.db.addArticle(i)}
+   add(i) {
+   this.db.addArticle(i);}
 
   onNoClick(): void {
     this.dialogRef.close();

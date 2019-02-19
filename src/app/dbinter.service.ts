@@ -12,12 +12,12 @@ import { Router } from '@angular/router';
 
 
 export class DBinterService {
-  items: Observable<any[]>
-  itemsRef: AngularFireList<any>
-  public CurrentUserId: any
-  public CurrentUserKey: any
-  public userdata: any
-  public data: any
+  items: Observable<any[]>;
+  itemsRef: AngularFireList<any>;
+  public CurrentUserId: any;
+  public CurrentUserKey: any;
+  public userdata: any;
+  public data: any;
 
 
 
@@ -36,79 +36,77 @@ export class DBinterService {
 
 
   addArticle(arti: any) {
-    this.CurrentUserId = JSON.parse(localStorage.getItem('currentuser'))
+    this.CurrentUserId = JSON.parse(localStorage.getItem('currentuser'));
     const q1 = () => {
       return new Promise((resolve) => this.db.list('Users', ref => ref.orderByChild('name').equalTo(this.CurrentUserId.email))
-        .snapshotChanges().subscribe(x => {resolve(x)}))
-    }
+        .snapshotChanges().subscribe(x => {resolve(x); }));
+    };
     const q2 = () => {
       return new Promise((resolve) => this.db.list('Users', ref => ref.orderByChild('name').equalTo(this.CurrentUserId.email))
-        .valueChanges().subscribe(x => resolve(x)))
-    }
+        .valueChanges().subscribe(x => resolve(x)));
+    };
 
     q1().then(dK => {
       q2().then(dV => {
-        let dki: any = dK
-        let dvi: any = dV
+        const dki: any = dK;
+        const dvi: any = dV;
         const Td = {
           name: this.CurrentUserId.email,
           articles: []
-        }
+        };
         if (dki.length == 0) {
-          Td.articles.push(arti)
-          this.itemsRef.push(Td)
-        }
-        else {
+          Td.articles.unshift(arti);
+          this.itemsRef.push(Td);
+        } else {
           if (dvi[0].articles == undefined) {
-            Td.articles.push(arti)
-            this.itemsRef.set(dki[0].key, Td)
-          }
-          else {
-            Td.articles = dvi[0].articles
-            Td.articles.push(arti)
-            this.itemsRef.set(dki[0].key, Td)
+            Td.articles.unshift(arti);
+            this.itemsRef.set(dki[0].key, Td);
+          } else {
+            Td.articles = dvi[0].articles;
+            Td.articles.unshift(arti);
+            this.itemsRef.set(dki[0].key, Td);
           }
         }
-      })
-    })
+      });
+    });
   }
 
 
 
 
   DeleteArticle(y: any) {
-    this.CurrentUserId = JSON.parse(localStorage.getItem('currentuser'))
-    let array: any = []
+    this.CurrentUserId = JSON.parse(localStorage.getItem('currentuser'));
+    let array: any = [];
     const q1 = () => {
       return new Promise((resolve) =>
         this.db.list('Users', ref =>
           ref.orderByChild('name').equalTo(this.CurrentUserId.email))
-          .snapshotChanges().subscribe(x => resolve(x)))
-    }
+          .snapshotChanges().subscribe(x => resolve(x)));
+    };
     const q = () => {
       return new Promise((resolve) =>
         this.db.list('Users', ref =>
           ref.orderByChild('name').equalTo(this.CurrentUserId.email))
-          .valueChanges().subscribe(x => resolve(x[0])))
-    }
+          .valueChanges().subscribe(x => resolve(x[0])));
+    };
     q().then(x => {
-      array = x
-      let indexT: number
-      console.log(array.articles.length)
+      array = x;
+      let indexT: number;
+      console.log(array.articles.length);
 
-      for (var i = 0; i < array.articles.length; i++) {
-        if (y.content == array.articles[i].content) indexT = i
+      for (let i = 0; i < array.articles.length; i++) {
+        if (y.content == array.articles[i].content) { indexT = i; }
       }
-      array.articles.splice(indexT, 1)
+      array.articles.splice(indexT, 1);
       q1().then(x => {
         const Td = {
           name: this.CurrentUserId.email,
           articles: []
-        }
-        Td.articles = array.articles
-        this.itemsRef.set(x[0].key, Td)
-      })
-    })
+        };
+        Td.articles = array.articles;
+        this.itemsRef.set(x[0].key, Td);
+      });
+    });
 
   }
 }

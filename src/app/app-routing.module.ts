@@ -18,22 +18,22 @@ import { MynewsComponent } from './dashboard/mynews/mynews.component';
 import { Auth2Guard } from './auth/auth2.guard';
 
 const routes: Routes = [
-  {path : '' , component : HomeComponent,canActivate: [Auth2Guard], pathMatch : 'full'},
-  {path : 'auth' , component : AuthComponent,canActivate: [Auth2Guard], children : [
+  {path : '' , component : HomeComponent, canActivate: [Auth2Guard], pathMatch : 'full'},
+  {path : 'auth' , component : AuthComponent, canActivate: [Auth2Guard], children : [
     {path : '' , component : LoginComponent, pathMatch: 'full'},
     {path : 'login' , component : LoginComponent},
     {path : 'register' , component : RegisterComponent}
   ]},
   { path : 'dashboard' , component : DashboardComponent, canActivate: [AuthGuard], children: [
-    {path: '', component:ArticleComponent,pathMatch: 'full'},
-    {path: 'home', component:ArticleComponent},
+    {path: '', component: ArticleComponent, pathMatch: 'full'},
+    {path: 'home', component: ArticleComponent},
     {path: 'search' , component : SearchComponent},
     {path : 'tech', component: TechnologyComponent},
     {path : 'sport', component: SportComponent},
     {path : 'buss', component: BusinessComponent},
     {path : 'health', component: HealthComponent},
     {path: 'science', component: ScienceComponent},
-    {path : 'mynews', component:MynewsComponent},
+    {path : 'mynews', component: MynewsComponent},
   ]},
   { path : '**' , component: C404Component}
 ];

@@ -16,6 +16,12 @@
       </mat-card-actions>
     </mat-card>
   </div>
+  <mat-paginator [length]="length"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="pageSizeOptions"
+              (page)="changepage(pageEvent=$event)"
+              >
+</mat-paginator>
 </div>
 <div *ngIf="!article" id="wait">
   <mat-spinner></mat-spinner>

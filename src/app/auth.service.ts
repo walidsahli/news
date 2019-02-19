@@ -9,31 +9,31 @@ import { DBinterService } from './dbinter.service';
 })
 export class AuthService {
 
-  constructor(public afauth: AngularFireAuth ,private router : Router ,private db : DBinterService, private zone : NgZone) { }
+  constructor(public afauth: AngularFireAuth , private router: Router , private db: DBinterService, private zone: NgZone) { }
 
   loginG() {
     this.afauth.auth.signInWithPopup(new auth.GoogleAuthProvider())
-    .then(x =>localStorage.setItem('currentuser', JSON.stringify(x.user)))
-    .then(()=>this.zone.run(() => this.router.navigateByUrl('dashboard')))
-    
+    .then(x => localStorage.setItem('currentuser', JSON.stringify(x.user)))
+    .then(() => this.zone.run(() => this.router.navigateByUrl('dashboard')));
+
   }
-  SignInMP( mail : string , pass : string){
-    this.afauth.auth.signInWithEmailAndPassword(mail,pass)
-    .then(x =>localStorage.setItem('currentuser', JSON.stringify(x.user)))
-    .then(()=>this.zone.run(() => this.router.navigateByUrl('dashboard')))
+  SignInMP( mail: string , pass: string) {
+    this.afauth.auth.signInWithEmailAndPassword(mail, pass)
+    .then(x => localStorage.setItem('currentuser', JSON.stringify(x.user)))
+    .then(() => this.zone.run(() => this.router.navigateByUrl('dashboard')));
   }
-  SignUpMP( mail : string , pass : string){
-    this.afauth.auth.createUserWithEmailAndPassword(mail,pass)
-    .then(()=>this.zone.run(() => this.router.navigateByUrl('dashboard')))
+  SignUpMP( mail: string , pass: string) {
+    this.afauth.auth.createUserWithEmailAndPassword(mail, pass)
+    .then(() => this.zone.run(() => this.router.navigateByUrl('dashboard')));
   }
   logout() {
-    this.afauth.auth.signOut().then(()=>
-    localStorage.removeItem('currentuser')).then(()=>
-    this.zone.run(() => this.router.navigateByUrl('auth')))
+    this.afauth.auth.signOut().then(() =>
+    localStorage.removeItem('currentuser')).then(() =>
+    this.zone.run(() => this.router.navigateByUrl('auth')));
   }
   loginFB() {
     this.afauth.auth.signInWithPopup(new auth.FacebookAuthProvider())
-    .then(x =>localStorage.setItem('currentuser', JSON.stringify(x.user)))
-    .then(()=>this.zone.run(() => this.router.navigateByUrl('dashboard')))
+    .then(x => localStorage.setItem('currentuser', JSON.stringify(x.user)))
+    .then(() => this.zone.run(() => this.router.navigateByUrl('dashboard')));
   }
 }

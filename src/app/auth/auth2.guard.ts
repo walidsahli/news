@@ -11,11 +11,11 @@ export class Auth2Guard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    if (JSON.parse(localStorage.getItem('currentuser'))==null)
-      return true
-    else {
-      this.router.navigateByUrl('/dashboard')
-      return false
+    if (JSON.parse(localStorage.getItem('currentuser')) == null) {
+      return true;
+    } else {
+      this.router.navigateByUrl('/dashboard');
+      return false;
     }
   }
 }

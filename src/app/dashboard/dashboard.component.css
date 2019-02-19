@@ -10,7 +10,7 @@
 .footer{
   justify-content: center;
 }
-mat-paginator{
+.mat-paginator{
   background: #ffffff00 ;
 }
 .example-is-mobile .example-toolbar {
@@ -45,5 +45,48 @@ h1.example-app-name {
   display: flex;
 }
 .class2{
-  margin-left: auto
+  margin-left: auto;
 }
+
+.filter-input{
+  display: flex ;
+  width: 280px ;
+  margin-left: 5px ;
+}
+
+.filter-drop-down-button{
+  margin-right: 5px;
+}
+
+.dropdown-item{
+  margin-bottom: 2px ;
+  color: #fff ;
+  text-align: center ;
+}
+
+.dropdown-item input {
+  border-radius: 8px ;
+}
+
+.dropdown-item:hover{
+  background-color: transparent ;
+}
+
+.dropdown-menu{
+  background-color: transparent ;
+  border: solid 1px #fff ;
+  margin-top: 10px ;
+}
+
+
+.test{
+  display: flex ;
+  flex-direction: column ;
+  width: 250px ;
+  margin-left: 20px ;
+  margin-top: 10px ;
+  border: solid 1px white ;
+  border-radius: 8px ;
+  padding: 10px ;
+}
+

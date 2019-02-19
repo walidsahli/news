@@ -21,6 +21,8 @@ export class DashboardComponent implements OnInit {
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
 
+  show = false ;
+
   constructor(private data: ApiDataService,
     private router: Router,
     private db: DBinterService,

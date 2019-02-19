@@ -32,7 +32,7 @@
           <mat-icon>assignment</mat-icon> Saved News
         </button>
       </mat-nav-list>
-      <mat-nav-list  [routerLink]="[ '/dashboard/home']">
+      <mat-nav-list [routerLink]="[ '/dashboard/home']">
         <button mat-button>
           <mat-icon>home</mat-icon> Home
         </button>
@@ -48,7 +48,7 @@
           <mat-icon>favorite</mat-icon> Health
         </button>
       </mat-nav-list>
-      <mat-nav-list >
+      <mat-nav-list>
         <button mat-button [routerLink]="[ '/dashboard/sport']">
           <mat-icon>directions_bike</mat-icon> Sports
         </button>
@@ -65,18 +65,19 @@
       </mat-nav-list>
       <mat-divider></mat-divider>
       <mat-nav-list>
-        <form class="form-inline w-80">
-          <input class="form-control mr-sm-2" (keyup)=Search() name="query" type="search" placeholder="Search" aria-label="Search"
-            [(ngModel)]=query>
-          <div class="btn-group">
-            <button type="button" class="btn btn-basic dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+        <form class="filter-input">
+          <input class="form-control mr-sm-2" (keyup)=Search() name="query" type="search" placeholder="Search"
+            aria-label="Search" [(ngModel)]=query>
+          <!-- <div class="btn-group">
+            <button type="button" class=" filter-drop-down-button btn btn-outline-primary dropdown-toggle dropdown-toggle-split"
+              data-toggle="dropdown">
             </button>
             <div class="dropdown-menu">
               <div class="dropdown-item">
-                from:<input type="date" [(ngModel)]=fromDate name="datefrom">
+                from : <input type="date" [(ngModel)]=fromDate name="datefrom">
               </div>
               <div class="dropdown-item">
-                To:<input type="date" [(ngModel)]=toDate name="datetoo">
+                To : <input type="date" [(ngModel)]=toDate name="datetoo">
               </div>
               <div class="dropdown-item">
                 <select [(ngModel)]="sortby" name="sort">
@@ -91,17 +92,45 @@
                 </select>
               </div>
             </div>
-          </div>
+          </div> -->
+          <button class="filter-drop-down-button btn btn-outline-primary dropdown-toggle" (click)="show = !show"></button>
+
         </form>
+        <div class="test" *ngIf="show">
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              
+              <mat-form-field>
+                  <input matInput [matDatepicker]="picker1" placeholder="Choose a date">
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+
+          <mat-form-field>
+            <mat-select placeholder="Sort By" [(ngModel)]="sortby" name="sort">
+              <mat-option value="publishedAt">Published At</mat-option>
+              <mat-option value="relevancy">Relevancy</mat-option>
+              <mat-option value="popularity">Popularity</mat-option>
+            </mat-select>
+          </mat-form-field> 
+          <mat-form-field>
+            <mat-select placeholder="Languages" [(ngModel)]="lang" name="langu">
+              <mat-option *ngFor="let i of EverLanguages" value="{{i.i}}">{{i.c}}</mat-option>
+            </mat-select>
+          </mat-form-field> 
+        </div>
 
       </mat-nav-list>
 
     </mat-sidenav>
 
     <router-outlet></router-outlet>
-   
+
 
 
   </mat-sidenav-container>
- 
+
 </div>

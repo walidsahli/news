@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms'
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireDatabaseModule } from '@angular/fire/database'
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatCheckboxModule } from '@angular/material';
+import { MatCheckboxModule, MatNativeDateModule } from '@angular/material';
 import { MatButtonModule, MatTreeModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -121,6 +121,8 @@ import { MynewsComponent } from './dashboard/mynews/mynews.component';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+    MatNativeDateModule,
+    
 
   ],
   providers: [

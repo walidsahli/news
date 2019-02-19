@@ -1,4 +1,15 @@
-#wait{
+.example-card {
+    width: auto;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  #card {
+      justify-content: center ! important;
+      margin-top: 30px;
+      margin-bottom: 30px;
+  }
+  #wait{
     margin-top: 30vh;
    width: 100%;
    margin-left: 50vw ;

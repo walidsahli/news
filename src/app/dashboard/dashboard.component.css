@@ -56,6 +56,22 @@ h1.example-app-name {
 
 .filter-drop-down-button{
   margin-right: 5px;
+  color: #3F51B5;
+  border-color: #3F51B5;
+}
+
+.filter-drop-down-button:hover{
+  background-color: #3F51B5;
+  border-color: #3F51B5 ;
+  color: #fff ;
+}
+
+.filter-drop-down-button:active{
+  background-color: #3F51B5 !important;
+  border: #3F51B5 !important ;
+}
+.filter-drop-down-button:focus{
+  box-shadow: none !important;
 }
 
 .dropdown-item{

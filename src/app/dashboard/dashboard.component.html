@@ -10,7 +10,7 @@
       </div>
       <div class="class2">
         <button mat-icon-button [matMenuTriggerFor]="menu" class="icon right">
-          <img [src]=UserData.photoURL class="icon right">
+          <img [src]=userImg class="icon right">
         </button>
         <mat-menu #menu="matMenu" class="right">
           <button mat-menu-item (click)=logOut()>
@@ -28,83 +28,60 @@
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56">
       <mat-nav-list [routerLink]="[ '/dashboard/mynews']">
-        <button mat-button>
+        <button mat-button class="button">
           <mat-icon>assignment</mat-icon> Saved News
         </button>
       </mat-nav-list>
       <mat-nav-list [routerLink]="[ '/dashboard/home']">
-        <button mat-button>
+        <button mat-button class="button">
           <mat-icon>home</mat-icon> Home
         </button>
       </mat-nav-list>
       <mat-divider></mat-divider>
       <mat-nav-list [routerLink]="[ '/dashboard/buss']">
-        <button mat-button>
+        <button mat-button class="button">
           <mat-icon>monetization_on</mat-icon> Business
         </button>
       </mat-nav-list>
       <mat-nav-list [routerLink]="[ '/dashboard/health']">
-        <button mat-button>
+        <button mat-button class="button">
           <mat-icon>favorite</mat-icon> Health
         </button>
       </mat-nav-list>
       <mat-nav-list>
-        <button mat-button [routerLink]="[ '/dashboard/sport']">
+        <button mat-button [routerLink]="[ '/dashboard/sport']" class="button">
           <mat-icon>directions_bike</mat-icon> Sports
         </button>
       </mat-nav-list>
       <mat-nav-list [routerLink]="[ '/dashboard/science']">
-        <button mat-button>
+        <button mat-button class="button">
           <mat-icon>timeline</mat-icon> Science
         </button>
       </mat-nav-list>
       <mat-nav-list [routerLink]="[ '/dashboard/tech']">
-        <button mat-button>
+        <button mat-button class="button">
           <mat-icon>tap_and_play</mat-icon> Technology
         </button>
       </mat-nav-list>
       <mat-divider></mat-divider>
       <mat-nav-list>
         <form class="filter-input">
-          <input class="form-control mr-sm-2" (keyup)=Search() name="query" type="search" placeholder="Search"
-            aria-label="Search" [(ngModel)]=query>
-          <!-- <div class="btn-group">
-            <button type="button" class=" filter-drop-down-button btn btn-outline-primary dropdown-toggle dropdown-toggle-split"
-              data-toggle="dropdown">
-            </button>
-            <div class="dropdown-menu">
-              <div class="dropdown-item">
-                from : <input type="date" [(ngModel)]=fromDate name="datefrom">
-              </div>
-              <div class="dropdown-item">
-                To : <input type="date" [(ngModel)]=toDate name="datetoo">
-              </div>
-              <div class="dropdown-item">
-                <select [(ngModel)]="sortby" name="sort">
-                  <option value="publishedAt">Published At</option>
-                  <option value="relevancy">Relevancy</option>
-                  <option value="popularity">Popularity</option>
-                </select>
-              </div>
-              <div class="dropdown-item">
-                <select [(ngModel)]="lang" name="langu">
-                  <option *ngFor="let i of EverLanguages" value="{{i.i}}" [selected]='i.i=="en"'>{{i.c}}</option>
-                </select>
-              </div>
-            </div>
-          </div> -->
+          <input class="form-control mr-sm-2" style="height: 45px;" name="query" type="search" placeholder="Search"
+            aria-label="Search" [(ngModel)]=query (ngModelChange)=Search() (keydown.enter)=Search()>
+          
           <button class="filter-drop-down-button btn btn-outline-primary dropdown-toggle" (click)="show = !show"></button>
-
+          <button id="voice" type="button" class="btn" [disabled]="service.started$ | async"
+          (click)="listen()"><mat-icon>keyboard_voice</mat-icon></button>
         </form>
         <div class="test" *ngIf="show">
             <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                <input matInput [matDatepicker]="picker" placeholder="From">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
               
               <mat-form-field>
-                  <input matInput [matDatepicker]="picker1" placeholder="Choose a date">
+                  <input matInput [matDatepicker]="picker1" placeholder="To">
                   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                   <mat-datepicker #picker1></mat-datepicker>
                 </mat-form-field>
@@ -128,8 +105,6 @@
     </mat-sidenav>
 
     <router-outlet></router-outlet>
-
-
 
   </mat-sidenav-container>
 

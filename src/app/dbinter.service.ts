@@ -39,11 +39,11 @@ export class DBinterService {
     this.CurrentUserId = JSON.parse(localStorage.getItem('currentuser'));
     const q1 = () => {
       return new Promise((resolve) => this.db.list('Users', ref => ref.orderByChild('name').equalTo(this.CurrentUserId.email))
-        .snapshotChanges().subscribe(x => {resolve(x); }));
+        .snapshotChanges().subscribe(x => {resolve(x);}));
     };
     const q2 = () => {
       return new Promise((resolve) => this.db.list('Users', ref => ref.orderByChild('name').equalTo(this.CurrentUserId.email))
-        .valueChanges().subscribe(x => resolve(x)));
+        .valueChanges().subscribe(x => {resolve(x);}));
     };
 
     q1().then(dK => {

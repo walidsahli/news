@@ -10,15 +10,39 @@
 .footer{
   justify-content: center;
 }
+#voice{
+  width :auto;
+  color: #fff;
+  box-shadow: none !important;
+  border-color: #fff;
+  width: 20%;
+  justify-content: center;
+}
+#voice:hover{
+  background-color: #fff;
+  border-color: #fff ;
+  color:  #3F51B5 ;
+}
+
+#voice:active{
+  background-color: #fff !important;
+  border: #fff !important ;
+}
+#voice:focus{
+  box-shadow: none !important;
+}
 .mat-paginator{
   background: #ffffff00 ;
 }
+
 .example-is-mobile .example-toolbar {
   position: fixed;
   /* Make sure the toolbar will stay on top of the content as it scrolls past. */
   z-index: 2;
 }
-
+.button{
+  width: 100%;
+}
 h1.example-app-name {
   margin-left: 8px;
   margin-top: 4px;
@@ -56,19 +80,19 @@ h1.example-app-name {
 
 .filter-drop-down-button{
   margin-right: 5px;
-  color: #3F51B5;
-  border-color: #3F51B5;
+  color: #fff;
+  border-color: #fff;
 }
 
 .filter-drop-down-button:hover{
-  background-color: #3F51B5;
-  border-color: #3F51B5 ;
-  color: #fff ;
+  background-color: #fff;
+  border-color: #fff ;
+  color: #3F51B5 ;
 }
 
 .filter-drop-down-button:active{
-  background-color: #3F51B5 !important;
-  border: #3F51B5 !important ;
+  background-color: #fff !important;
+  border: #fff !important ;
 }
 .filter-drop-down-button:focus{
   box-shadow: none !important;

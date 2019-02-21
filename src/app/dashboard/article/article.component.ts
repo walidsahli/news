@@ -9,16 +9,16 @@ import { PageEvent } from '@angular/material';
   styleUrls: ['./article.component.css']
 })
 export class ArticleComponent implements OnInit {
-  public article: any
-  public length: number
+  public article: any;
+  public length: number;
   pageSize = 20;
   pageSizeOptions: number[] = [5, 10, 25, 100];
-  pageindex: number = 1
+  pageindex = 1;
   pageEvent: PageEvent;
   constructor(private http: HttpClient, private dbinter: DBinterService) {
 
   }
-  GetLocalNews(p: number,m:number) {
+  GetLocalNews(p: number, m: number) {
 
     const q1 = () => {
       return new Promise((resolve) =>
@@ -41,14 +41,13 @@ export class ArticleComponent implements OnInit {
         };
         q3().then(l => {
           this.http.get<any>('https://newsapi.org/v2/everything?q='
-            + l[0].nativeName + '&page=' + p + '&pageSize='+ m + '&sortBy=publishedAt&apiKey=b9d34afdf37948cda401c3dc0afe1189')
+            + l[0].nativeName +'&page=' + p + '&pageSize=' + m + '&sortBy=publishedAt&apiKey=b9d34afdf37948cda401c3dc0afe1189')
             .subscribe(x => {
               this.article = x;
-              if( x.totalResults%this.pageSize != 0 ){
-                this.length = Math.ceil(x.totalResults)
-               }
-              else {
-                this.length = x.totalResults/this.pageSize
+              if ( x.totalResults % this.pageSize != 0 ) {
+                this.length = Math.ceil(x.totalResults / this.pageSize);
+               } else {
+                this.length = x.totalResults / this.pageSize;
               }
 
             });
@@ -61,13 +60,13 @@ export class ArticleComponent implements OnInit {
     this.dbinter.addArticle(a);
   }
   changepage(x: PageEvent) {
-    this.pageindex = x.pageIndex + 1
-    this.pageSize=x.pageSize
-    this.GetLocalNews(this.pageindex,this.pageSize)
+    this.pageindex = x.pageIndex + 1;
+    this.pageSize = x.pageSize;
+    this.GetLocalNews(this.pageindex, this.pageSize);
   }
 
   ngOnInit() {
-    this.GetLocalNews(this.pageindex,this.pageSize)
+    this.GetLocalNews(this.pageindex, this.pageSize);
   }
 
 }

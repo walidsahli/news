@@ -2,19 +2,30 @@
   <div *ngFor="let i of article.articles;" id="card">
     <mat-card class="example-card">
       <mat-card-header>
-        <mat-card-title>{{i.source.name}}</mat-card-title>
-        <mat-card-subtitle>{{i.publishedAt}}</mat-card-subtitle>
+        <mat-card-title>{{i.title}}</mat-card-title>
+        <mat-card-subtitle>{{i.publishedAt | date}} Source : {{i.source.name}}</mat-card-subtitle>
       </mat-card-header>
       <img mat-card-image src="{{i.urlToImage}}">
       <mat-card-content>
-        <h4>{{i.description}}</h4>
+        <h5>{{i.content}}</h5>
+        <a mat-button [href]="i.url" target="_blank">
+          Read more ...
+        </a>
       </mat-card-content>
       <mat-card-actions>
-        <button (click)="DeleteArt(i)" mat-raised-button color="warn"> Delete this </button>
+        <button mat-button (click)="addArticle(i)">
+          <mat-icon>save</mat-icon> Save it
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>
+  <mat-paginator [length]="length"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="pageSizeOptions"
+              (page)="changepage(pageEvent=$event)"
+              >
+</mat-paginator>
 </div>
-<div *ngIf="!article" id="wait">
-  <mat-spinner></mat-spinner>
+<div *ngIf="!article" id="wait" >
+  <mat-spinner mode="indeterminate" ></mat-spinner>
 </div>

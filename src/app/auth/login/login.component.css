@@ -21,7 +21,8 @@
   -ms-flex-align: center;
   align-items: center;
   padding: 40px 0px ;
-  background: linear-gradient(132deg, #7D59AA, #EA3878, rgb(0, 17, 248));
+  /*background: linear-gradient(132deg, #7D59AA, #EA3878, rgb(0, 17, 248));*/
+  background: linear-gradient(132deg, black, rgb(0, 17, 248));
   background-size: 400%;
   animation: BackgroundGradiant 10s ease infinite;
 }

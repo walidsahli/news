@@ -5,7 +5,6 @@ import { RegisterComponent } from './auth/register/register.component';
 import { AuthComponent } from './auth/auth.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './auth/auth.guard';
-import { HomeComponent } from './home/home.component';
 import { C404Component } from './c404/c404.component';
 import { SearchComponent } from './dashboard/search/search.component';
 import { TechnologyComponent } from './dashboard/technology/technology.component';
@@ -18,7 +17,7 @@ import { MynewsComponent } from './dashboard/mynews/mynews.component';
 import { Auth2Guard } from './auth/auth2.guard';
 
 const routes: Routes = [
-  {path : '' , component : HomeComponent, canActivate: [Auth2Guard], pathMatch : 'full'},
+  {path : '' , component : LoginComponent, canActivate: [Auth2Guard], pathMatch : 'full'},
   {path : 'auth' , component : AuthComponent, canActivate: [Auth2Guard], children : [
     {path : '' , component : LoginComponent, pathMatch: 'full'},
     {path : 'login' , component : LoginComponent},

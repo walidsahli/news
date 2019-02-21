@@ -41,7 +41,6 @@ import { ApiDataService } from './api-data.service';
 import { AuthGuard } from './auth/auth.guard';
 import { DBinterService } from './dbinter.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeComponent } from './home/home.component';
 import { C404Component } from './c404/c404.component';
 import { SportComponent } from './dashboard/sport/sport.component';
 import { HealthComponent } from './dashboard/health/health.component';
@@ -59,7 +58,6 @@ import { MynewsComponent } from './dashboard/mynews/mynews.component';
     AuthComponent,
     DashboardComponent,
     ArticleComponent,
-    HomeComponent,
     C404Component,
     SportComponent,
     HealthComponent,

@@ -17,6 +17,7 @@
   border-color: #fff;
   width: 20%;
   justify-content: center;
+  margin-right: 5px ;
 }
 #voice:hover{
   background-color: #fff;
@@ -42,6 +43,7 @@
 }
 .button{
   width: 100%;
+  text-align: start ;
 }
 h1.example-app-name {
   margin-left: 8px;

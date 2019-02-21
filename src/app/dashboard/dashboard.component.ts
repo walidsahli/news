@@ -69,7 +69,8 @@ export class DashboardComponent implements OnInit {
         resolve(this.message);
       }); }); };
     pro().then((x: string) => {this.query = x;
-      this.Search(); });
+      this.Search();
+      });
   }
 
   logOut() {

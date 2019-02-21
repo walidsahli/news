@@ -38,7 +38,8 @@ export class DialogOverviewExampleDialog {
 
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any , private db: DBinterService) {}
+    @Inject(MAT_DIALOG_DATA) 
+   public data: any , private db: DBinterService) {}
 
    add(i) {
    this.db.addArticle(i);}
